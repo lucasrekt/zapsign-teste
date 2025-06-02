@@ -1,0 +1,29 @@
+
+# > Node
+node_modules/
+dist/
+.env
+*.log
+
+# > Angular
+/frontend/node_modules/
+/frontend/dist/
+
+# > Python/Django
+*.pyc
+__pycache__/
+env/
+venv/
+.env
+db.sqlite3
+
+# > Docker
+docker-compose.override.yml
+
+# > VSCode
+.vscode/
+*.code-workspace
+
+# > Sistema
+.DS_Store
+Thumbs.db

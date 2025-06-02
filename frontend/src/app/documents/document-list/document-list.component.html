@@ -1,0 +1,37 @@
+<div *ngIf="loading">Carregando documentos…</div>
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<ul class="document-list">
+  <li *ngFor="let doc of documents">
+    <strong>{{ doc.name }}</strong> (ID: {{ doc.id }}) — Status: {{ doc.status }}
+
+    <ul>
+      <li *ngFor="let signer of doc.signers">
+        Signatário: {{ signer.name }} ({{ signer.email }})
+      </li>
+      <li *ngIf="doc.signers.length === 0">
+        Nenhum signatário cadastrado.
+      </li>
+    </ul>
+
+    <button (click)="startEdit(doc)">Editar</button>
+    <button (click)="deleteDocument(doc.id)">Excluir</button>
+
+    <div *ngIf="editingId === doc.id" class="edit-section">
+      <label>
+        Nome do Documento:
+        <input [(ngModel)]="editForm.name" />
+      </label>
+      <label *ngIf="doc.signers.length > 0">
+        Nome do Signatário:
+        <input [(ngModel)]="editForm.signerName" />
+      </label>
+      <label *ngIf="doc.signers.length > 0">
+        Email do Signatário:
+        <input [(ngModel)]="editForm.signerEmail" />
+      </label>
+      <button (click)="saveEdit(doc)">Salvar</button>
+      <button (click)="cancelEdit()">Cancelar</button>
+    </div>
+  </li>
+</ul>

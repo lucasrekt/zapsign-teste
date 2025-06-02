@@ -1,0 +1,49 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div>
+      <label for="name">Nome do Documento:</label>
+      <input id="name" formControlName="name" />
+      <div class="error" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+        Nome é obrigatório.
+      </div>
+    </div>
+  
+    <div>
+      <label for="signerName">Nome do Signatário:</label>
+      <input id="signerName" formControlName="signerName" />
+      <div class="error" *ngIf="form.get('signerName')?.touched && form.get('signerName')?.invalid">
+        Nome do signatário é obrigatório.
+      </div>
+    </div>
+  
+    <div>
+      <label for="signerEmail">Email do Signatário:</label>
+      <input id="signerEmail" formControlName="signerEmail" />
+      <div class="error" *ngIf="form.get('signerEmail')?.touched && form.get('signerEmail')?.invalid">
+        Informe um e-mail válido.
+      </div>
+    </div>
+  
+    <div>
+      <label for="pdfUrl">URL do PDF:</label>
+      <input id="pdfUrl" formControlName="pdfUrl" />
+      <div class="error" *ngIf="form.get('pdfUrl')?.touched && form.get('pdfUrl')?.invalid">
+        URL do PDF é obrigatória ou faça upload de um arquivo.
+      </div>
+    </div>
+
+    <div>
+      <label for="pdfFile">Ou faça upload do PDF:</label>
+      <input type="file" id="pdfFile" (change)="onFileSelected($event)" accept=".pdf" />
+      <div class="note">
+        Se você fizer upload, o campo de URL será ignorado.
+      </div>
+    </div>
+  
+    <br>
+    <button type="submit">Salvar Documento</button>
+
+
+    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  </form>
+  
